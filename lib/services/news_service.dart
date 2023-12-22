@@ -11,5 +11,6 @@ class NewsService {
     Map<String, dynamic> jsonData = response.data;
    List<dynamic> articles = jsonData['articles'];
     print(articles[2]);
+    
   }
 }
