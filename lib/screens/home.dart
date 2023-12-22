@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_ui_setup/category_cards/categories_list_view.dart';
 import 'package:news_app_ui_setup/category_cards/category_card.dart';
 import 'package:news_app_ui_setup/category_cards/news_list_view.dart';
 import 'package:news_app_ui_setup/category_cards/news_tile.dart';
+import 'package:news_app_ui_setup/services/news_service.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -46,7 +48,7 @@ class Home extends StatelessWidget {
                 height: 32,
               ),
             ),
-            NewsListView()
+            NewsListView(articleModel: NewsService(Dio()).getNews();,)
           ],
         ),
       ),

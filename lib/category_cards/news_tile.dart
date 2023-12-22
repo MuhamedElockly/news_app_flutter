@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_ui_setup/models/article_model.dart';
 
 class NewsTile extends StatelessWidget {
+  final ArticleModel articleModel;
+
+  const NewsTile({super.key, required this.articleModel});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +26,7 @@ class NewsTile extends StatelessWidget {
               height: 12,
             ),
             Text(
-              " hwou fhohid fodfheo fhjiof  feiwf dslijf c ",
+              articleModel.tittle.toString(),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
@@ -33,7 +38,7 @@ class NewsTile extends StatelessWidget {
               height: 8,
             ),
             Text(
-              "hwou fhohid fodfheo fhjiof  feiwhfjf dslijf chwou fhohid hwou fhohid fodfheo fhjiof  feiwhfjf dslijf chwou fhohid  fodfheo fhjiof  feiwhfjf dslijf c ",
+              articleModel.subTittle.toString(),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
