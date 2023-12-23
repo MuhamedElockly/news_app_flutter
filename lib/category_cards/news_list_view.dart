@@ -16,7 +16,7 @@ class _NewsListViewState extends State<NewsListView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getNews();
+    // getNews();
   }
 
   Future<void> getNews() async {
@@ -27,15 +27,13 @@ class _NewsListViewState extends State<NewsListView> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? SliverToBoxAdapter(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : SliverList(
-            delegate: SliverChildBuilderDelegate(
-            childCount: articleModel.length,
+    return FutureBuilder(
+      future: NewsService(Dio()).getNews(),
+      builder: (context, snapshot) {
+        articleModel = snapshot.data ?? [];
+        return SliverList(
+          delegate: SliverChildBuilderDelegate(
+            childCount:articleModel.length,
             (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 24),
@@ -44,6 +42,22 @@ class _NewsListViewState extends State<NewsListView> {
                 ),
               );
             },
-          ));
+          ),
+        );
+      },
+    );
+
+    // SliverList(
+    //     delegate: SliverChildBuilderDelegate(
+    //   childCount: articleModel.length,
+    //   (context, index) {
+    //     return Padding(
+    //       padding: const EdgeInsets.only(bottom: 24),
+    //       child: NewsTile(
+    //         articleModel: articleModel[index],
+    //       ),
+    //     );
+    //   },
+    // ));
   }
 }
