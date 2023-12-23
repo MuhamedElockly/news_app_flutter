@@ -11,39 +11,53 @@ class NewsListView extends StatefulWidget {
 
 class _NewsListViewState extends State<NewsListView> {
   List<ArticleModel> articleModel = [];
+
   bool isLoading = true;
+
+  var future;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // getNews();
-  }
-
-  Future<void> getNews() async {
-    articleModel = await NewsService(Dio()).getNews();
-    isLoading = false;
-    setState(() {});
+    future = NewsService(Dio()).getNews();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: NewsService(Dio()).getNews(),
+    return FutureBuilder<List<ArticleModel>>(
+      future: future,
       builder: (context, snapshot) {
         articleModel = snapshot.data ?? [];
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            childCount:articleModel.length,
-            (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: NewsTile(
-                  articleModel: articleModel[index],
-                ),
-              );
-            },
-          ),
-        );
+
+        if (snapshot.hasData) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: articleModel.length,
+              (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: NewsTile(
+                    articleModel: articleModel[index],
+                  ),
+                );
+              },
+            ),
+          );
+        } else if (snapshot.hasData) {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                snapshot.error.toString(),
+              ),
+            ),
+          );
+        } else {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
       },
     );
 
