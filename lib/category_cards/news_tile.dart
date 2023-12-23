@@ -15,9 +15,9 @@ class NewsTile extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: articleModel.image.toString().isNotEmpty
-                    ? Image.network(articleModel.image.toString())
-                    : Image.asset('assets/sports.jpg')
+                child: Image.asset('assets/sports.jpg')
+                    // ? Image.network(articleModel.image.toString())
+                    // : Image.asset('assets/sports.jpg')
 
                 /*
               Image.asset(
@@ -27,7 +27,7 @@ class NewsTile extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               */
-                ),
+        ),
             SizedBox(
               height: 12,
             ),
