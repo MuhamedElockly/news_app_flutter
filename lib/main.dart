@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:news_app_ui_setup/services/news_service.dart';
 
 void main() {
-  NewsService(Dio()).getNews();
+
   runApp(NewsCloud());
 }
 
