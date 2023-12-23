@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
                 height: 32,
               ),
             ),
-            NewsListView(articleModel: NewsService(Dio()).getNews();,)
+            NewsListView()
           ],
         ),
       ),
