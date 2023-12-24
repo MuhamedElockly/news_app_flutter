@@ -15,7 +15,7 @@ class NewsService {
       List<ArticleModel> articlesModel = [];
       for (var article in articles) {
         articlesModel.add(ArticleModel(
-            content: article['content'],
+            articleUrl: article['url'],
             image: article['urlToImage'],
             tittle: article['title'],
             subTittle: article['description']));

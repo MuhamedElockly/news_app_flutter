@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_ui_setup/models/article_model.dart';
 import 'package:news_app_ui_setup/screens/article_view.dart';
+import 'package:news_app_ui_setup/screens/web_view.dart';
 
 class NewsTile extends StatelessWidget {
   final ArticleModel articleModel;
@@ -13,7 +14,8 @@ class NewsTile extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return ArticleView(articleModel: articleModel);
+            // return ArticleView(articleModel: articleModel);
+            return WebViewScreen();
           },
         ));
       },
