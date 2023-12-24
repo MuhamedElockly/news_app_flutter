@@ -24,6 +24,7 @@ class ArticleView extends StatelessWidget {
                     child: Image.network(
                       articleModel.image.toString(),
                       errorBuilder: (context, error, stackTrace) {
+               
                         return Image.asset(
                           'assets/sports.jpg',
                           width: double.infinity,
